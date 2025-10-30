@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Tell the browser important information about this page -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Connect the styling file to make the page look pretty -->
+    <link rel="stylesheet" href="css/style.css" />
+    
+    <!-- What shows in the browser tab -->
+    <title>Login - Breakout</title>
+  </head>
+  
+  <body>
+    <!-- The navigation bar/menu at the top with links to all pages -->
+    <nav class="nav">
+      <!-- Left side: Game title -->
+      <div class="nav-left">
+        <a class="nav-brand" href="index.html">🎮 BREAKOUT</a>
+      </div>
+      
+      <!-- Right side: Links to other pages and user info -->
+      <div class="nav-right">
+        <a href="index.html">Game</a>
+        <a href="registration.html">Register</a>
+        <a href="login.html">Login</a>
+        <a href="rankings.html">Rankings</a>
+        <span id="user-info" class="user-info"></span>
+        <button id="logout-btn" class="btn small hidden">Logout</button>
+      </div>
+    </nav>
+
+    <!-- Login form where users sign in to their account -->
+    <main class="form-page">
+      <h2>Login</h2>
+      
+      <!-- Form gets username and password -->
+      <form id="login-form" class="form-card" novalidate>
+        
+        <!-- Username input field -->
+        <label>
+          Username or Email
+          <input type="text" id="login-username" name="username" placeholder="Enter username or email" />
+          <!-- Shows error if username is wrong -->
+          <small class="error" id="login-username-error"></small>
+        </label>
+
+        <!-- Password input field -->
+        <label>
+          Password
+          <input type="password" id="login-password" name="password" placeholder="Enter password" />
+          <!-- Shows error if password is wrong -->
+          <small class="error" id="login-password-error"></small>
+        </label>
+
+        <!-- Submit button to log in -->
+        <div class="form-actions">
+          <button type="submit" class="btn">Login</button>
+        </div>
+
+        <!-- Success message shows when login is successful -->
+        <div id="login-success" class="success"></div>
+      </form>
+    </main>
+
+    <!-- Links the JavaScript file that handles login -->
+    <script type="module" src="js/login.js"></script>
+  </body>
+</html>

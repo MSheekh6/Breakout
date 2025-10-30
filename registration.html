@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Tell the browser important information about this page -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Connect the styling file to make the page look pretty -->
+    <link rel="stylesheet" href="css/style.css" />
+    
+    <!-- What shows in the browser tab -->
+    <title>Register - Breakout</title>
+  </head>
+  
+  <body>
+    <!-- The navigation bar/menu at the top with links to all pages -->
+    <nav class="nav">
+      <!-- Left side: Game title -->
+      <div class="nav-left">
+        <a class="nav-brand" href="index.html">🎮 BREAKOUT</a>
+      </div>
+      
+      <!-- Right side: Links to other pages and user info -->
+      <div class="nav-right">
+        <a href="index.html">Game</a>
+        <a href="registration.html">Register</a>
+        <a href="login.html">Login</a>
+        <a href="rankings.html">Rankings</a>
+        <span id="user-info" class="user-info"></span>
+        <button id="logout-btn" class="btn small hidden">Logout</button>
+      </div>
+    </nav>
+
+    <!-- Registration form where users create their account -->
+    <main class="form-page">
+      <h2>Create Account</h2>
+      
+      <!-- Form collects user information novalidate means we use JavaScript to check not browser -->
+      <form id="register-form" class="form-card" novalidate>
+        
+        <!-- Username or email input field -->
+        <label>
+          Username or Email <span class="required">*</span>
+          <input type="text" id="reg-username" name="username" placeholder="Enter username or email" />
+          <!-- Error message appears here if something is wrong -->
+          <small class="error" id="reg-username-error"></small>
+        </label>
+
+        <!-- Password input field -->
+        <label>
+          Password <span class="required">*</span>
+          <input type="password" id="reg-password" name="password" placeholder="At least 6 characters" />
+          <!-- Error message appears here if password is weak -->
+          <small class="error" id="reg-password-error"></small>
+        </label>
+
+        <!-- Full name input field -->
+        <label>
+          Full Name
+          <input type="text" id="reg-fullname" name="fullname" placeholder="Enter your full name" />
+          <small class="error" id="reg-fullname-error"></small>
+        </label>
+
+        <!-- Phone number input field -->
+        <label>
+          Phone Number
+          <input type="tel" id="reg-phone" name="phone" placeholder="Enter phone number" />
+          <small class="error" id="reg-phone-error"></small>
+        </label>
+
+        <!-- Submit button to create account -->
+        <div class="form-actions">
+          <button type="submit" class="btn">Register</button>
+        </div>
+
+        <!-- Success message shows when registration is complete -->
+        <div id="reg-success" class="success"></div>
+      </form>
+    </main>
+
+    <!-- Links the JavaScript file that handles registration -->
+    <script type="module" src="js/registration.js"></script>
+  </body>
+</html>

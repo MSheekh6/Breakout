@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Tell the browser important information about this page -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Connect the styling file to make the page look pretty -->
+    <link rel="stylesheet" href="css/style.css" />
+    
+    <!-- What shows in the browser tab -->
+    <title>Breakout Game</title>
+  </head>
+  
+  <body>
+    <!-- The navigation bar/menu at the top with links to all pages -->
+    <nav class="nav">
+      <!-- Left side: Game title -->
+      <div class="nav-left">
+        <a class="nav-brand" href="index.html"> BREAKOUT</a>
+      </div>
+      
+      <!-- Right side: Links to other pages and user info -->
+      <div class="nav-right">
+        <a href="index.html">Game</a> <!-- Link to the main game page -->
+        <a href="registration.html">Register</a> <!-- Link to registration page -->
+        <a href="login.html">Login</a> <!-- Link to login page -->
+        <a href="rankings.html">Rankings</a> <!-- Link to rankings page -->
+
+        <!-- Shows who is logged in which is filled in by JavaScript -->
+        <span id="user-info" class="user-info"></span>
+        
+        <!-- Logout button which is hidden until someone logs in -->
+        <button id="logout-btn" class="btn small hidden">Logout</button>
+      </div>
+    </nav>
+
+    <!-- Game header Title of the game -->
+    <header class="page-header">
+      <h1>Breakout!</h1>
+    </header>
+
+    <!-- Button thats shows how to play -->
+    <button id="rules-btn" class="btn rules-btn">Show Rules</button>
+
+    <!-- Slidebar for rules that slides in from left when "Show Rules" is clicked -->
+    <div id="rules" class="rules" aria-hidden="true">
+      <h2>How To Play</h2>
+      <p>
+        Use your <strong>left and right arrow keys</strong> to move the paddle and bounce the ball up to break the blocks.
+      </p>
+      <p>
+        Break all the bricks to advance to the next level. Each level increases the ball speed!
+      </p>
+      <p>
+        You have <strong>3 lives</strong>. If you miss the ball, you lose a life. When all lives are lost, the game ends and your score is saved.
+      </p>
+      
+      <!-- Button to close the rules sidebar -->
+      <button id="close-btn" class="btn">Close</button>
+    </div>
+
+    <!-- Area where the actual game is played -->
+    <main class="game-area">
+      <!-- Canvas: The drawing area where the game graphics appear -->
+      <canvas id="canvas"></canvas>
+      
+      <!-- Shows score and lives remaining -->
+      <div id="game-controls" class="game-controls">
+        <div id="score-board">Score: <span id="score">0</span></div>
+        <div id="lives-board">Lives: <span id="lives">3</span></div>
+      </div>
+    </main>
+
+    <!-- Links the the JavaScript file for the game -->
+    <script type="module" src="js/game.js"></script>
+  </body>
+</html>
