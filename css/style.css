@@ -1,0 +1,443 @@
+/*
+  Breakout Game Stylesheet
+  Makes the website look nice with colors buttons and layouts
+*/
+
+/* Import a fun font from Google */
+@import url("https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@400;700&display=swap");
+
+/* CSS Variables - Colors used throughout the site */
+:root {
+  --background-color: #7f7fd5;  /* Purple */
+  --background-secondary-color: #91eae4;  /* Teal */
+  --canvas-color: #f0f0f0;  /* Light gray for game canvas */
+  --text-color: rgba(255, 255, 255, 0.95);  /* White text */
+  --sidebar-color: #343457;  /* Dark purple */
+  --button-color: #86a8e7;  /* Blue for buttons */
+  --hover-color: #7db3e3;  /* Lighter blue for hover */
+  --success-color: #0a7b00;  /* Green for success messages */
+  --error-color: #b00020;  /* Red for errors */
+  --shadow: 0 4px 6px rgba(0,0,0,0.1);  /* Shadow effect */
+}
+
+/* Reset default browser styles */
+* { 
+  box-sizing: border-box;  /* Include padding and border in element width */
+  margin: 0;
+  padding: 0;
+}
+
+/* Main page background */
+body {
+  background: linear-gradient(135deg, var(--background-color), var(--button-color), var(--background-secondary-color));  /* Purple to blue to teal gradient */
+  font-family: "Balsamiq Sans", cursive;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;  /* Full viewport height */
+  overflow: hidden;  /* No scrolling */
+  color: var(--text-color);
+}
+
+
+/* Navigation bar at the top */
+.nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;  /* Space between left and right sides */
+  align-items: center;
+  padding: 0.75rem 2rem;
+  background: rgba(52, 52, 87, 0.3);  /* Semi-transparent dark background */
+  backdrop-filter: blur(10px);  /* Blur effect */
+  box-shadow: var(--shadow);
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+/* Game logo/title in navbar */
+.nav-brand {
+  font-weight: 700;  /* Bold */
+  font-size: 1.5rem;
+  color: var(--text-color);
+  text-decoration: none;  /* No underline */
+  margin-right: 2rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Right side of navbar with links */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;  /* Space between items */
+}
+
+/* Navbar links styling */
+.nav a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;  /* Smooth animation */
+}
+
+/* Hover effect for navbar links */
+.nav a:not(.nav-brand):hover {
+  transform: translateY(-2px);  /* Lift up slightly */
+  text-shadow: 0 2px 8px rgba(255,255,255,0.3);
+}
+
+/* User info display in navbar */
+.user-info {
+  font-size: 0.9rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(255,255,255,0.1);  /* Slightly visible background */
+  border-radius: 20px;  /* Rounded pill shape */
+}
+
+/* Hidden elements are not displayed */
+.hidden {
+  display: none !important;
+}
+
+
+/* Buttons styling */
+.btn {
+  cursor: pointer;  /* Hand cursor on hover */
+  border: none;
+  padding: 0.625rem 1.5rem;
+  background: linear-gradient(135deg, var(--button-color), var(--hover-color));  /* Gradient background */
+  color: var(--text-color);
+  border-radius: 8px;  /* Rounded corners */
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;  /* Semi-bold */
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
+  text-transform: uppercase;  /* ALL CAPS */
+  letter-spacing: 0.5px;  /* Slight letter spacing */
+}
+
+/* Button hover effect */
+.btn:hover {
+  transform: translateY(-2px);  /* Lift up */
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);  /* Bigger shadow */
+  background: linear-gradient(135deg, var(--hover-color), var(--button-color));  /* Reverse gradient */
+}
+
+/* Button click effect */
+.btn:active {
+  transform: translateY(0);  /* Push down */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);  /* Smaller shadow */
+}
+
+/* Remove outline when button is focused */
+.btn:focus {
+  outline: none;
+}
+
+/* Small buttons like logout */
+.btn.small {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+/* Show Rules button position */
+.rules-btn {
+  position: absolute;  /* Fixed position */
+  top: 5.5rem;
+  right: 2rem;
+  z-index: 10;  /* On top of other elements */
+}
+
+
+/* Game page header */
+.page-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* Center horizontally */
+  justify-content: center;  /* Center vertically */
+  padding: 0.5rem 0;
+}
+
+/* Breakout title */
+.page-header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  text-shadow: 3px 3px 6px rgba(0,0,0,0.3);  /* Shadow behind text */
+}
+
+/* Game area container */
+.game-area {
+  flex: 1;  /* Take remaining space */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;  /* Space between elements */
+  padding: 1rem;
+  overflow: hidden;  /* No scrolling */
+}
+
+/* Canvas where game is drawn */
+canvas {
+  background-color: var(--canvas-color);
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  max-width: 90vw;  /* Max 90% of viewport width */
+  max-height: 60vh;  /* Max 60% of viewport height */
+  border: 3px solid rgba(255,255,255,0.2);  /* Slight white border */
+}
+
+/* Score and Lives container */
+.game-controls {
+  display: flex;
+  gap: 2rem;  /* Space between score and lives */
+  align-items: center;
+}
+
+/* Score and Lives display boxes */
+#score-board, #lives-board {
+  background: linear-gradient(135deg, #fff, #f0f0f0);  /* White gradient */
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  color: #222;  /* Dark text */
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow);
+  min-width: 120px;
+  text-align: center;
+}
+
+/* Score and Lives numbers */
+#score-board span, #lives-board span {
+  color: var(--button-color);  /* Blue color */
+  font-size: 1.3rem;  /* Bigger */
+}
+
+
+/* Rules sidebar that slides in from left */
+.rules {
+  position: fixed;  /* Stay in place */
+  top: 0;
+  left: 0;
+  background: linear-gradient(180deg, var(--sidebar-color), #2a2a45);  /* Dark gradient */
+  color: var(--text-color);
+  height: 100vh;  /* Full height */
+  width: 400px;
+  padding: 2rem;
+  transform: translateX(-400px);  /* Hidden off-screen to left */
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);  /* Smooth slide animation */
+  box-shadow: 4px 0 12px rgba(0,0,0,0.3);
+  z-index: 1000;  /* On top of everything */
+  overflow-y: auto;  /* Scroll if content too long */
+}
+
+/* Show the rules sidebar */
+.rules.show {
+  transform: translateX(0);  /* Slide into view */
+}
+
+.rules h2 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.rules p {
+  margin-bottom: 1rem;
+  line-height: 1.6;  /* Spacing between lines */
+}
+
+.rules .btn {
+  margin-top: 1rem;
+  width: 100%;  /* Full width button */
+}
+
+
+/* Forms container for registration and login */
+.form-page, .rankings-page {
+  flex: 1;  /* Take available space */
+  width: 100%;
+  max-width: 600px;  /* Not too wide */
+  margin: 0 auto;  /* Center on page */
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;  /* No scrolling */
+}
+
+/* Form titles */
+.form-page h2, .rankings-page h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+/* White card that holds the form */
+.form-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;  /* Space between fields */
+  background: rgba(255,255,255,0.95);  /* Almost white */
+  color: #222;  /* Dark text */
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  max-height: calc(100vh - 200px);  /* Don't be too tall */
+  overflow-y: auto;  /* Scroll if needed */
+}
+
+/* Labels for input fields */
+.form-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-weight: 600;  /* Bold */
+  font-size: 0.95rem;
+}
+
+/* Red asterisk for required fields */
+.required {
+  color: var(--error-color);  /* Red */
+}
+
+/* Input boxes where you type */
+.form-card input {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 2px solid #ddd;  /* Light gray border */
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+/* When you click in an input box */
+.form-card input:focus {
+  outline: none;
+  border-color: var(--button-color);  /* Blue border */
+  box-shadow: 0 0 0 3px rgba(134, 168, 231, 0.1);  /* Subtle glow */
+}
+
+.form-actions {
+  text-align: center;
+  margin-top: 0.25rem;
+}
+
+.form-actions .btn {
+  width: 100%;  /* Full width button */
+}
+
+/* Error messages in red */
+.error {
+  color: var(--error-color);
+  font-size: 0.8rem;
+  min-height: 0.9rem;  /* Reserve space even when empty */
+  margin-top: 0.1rem;
+}
+
+/* Success messages in green */
+.success {
+  color: var(--success-color);
+  font-weight: 600;
+  text-align: center;
+  margin-top: 0.5rem;
+  padding: 0.4rem;
+  background: rgba(10, 123, 0, 0.1);  /* Light green background */
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+
+/* Rankings page leaderboard */
+.rankings-page {
+  max-width: 800px;  /* Wider for table */
+}
+
+.rankings-table {
+  width: 100%;
+  border-collapse: collapse;  /* No gaps between cells */
+  background: rgba(255,255,255,0.95);
+  color: #222;
+  border-radius: 12px;
+  overflow: hidden;  /* Hide overflow for rounded corners */
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+/* Table header with column titles */
+.rankings-table thead {
+  background: linear-gradient(135deg, var(--button-color), var(--hover-color));  /* Gradient header */
+  color: var(--text-color);
+}
+
+.rankings-table th {
+  padding: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;  /* ALL CAPS */
+  letter-spacing: 0.5px;
+}
+
+/* Table data cells */
+.rankings-table td {
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid #eee;  /* Light line between rows */
+  text-align: center;
+}
+
+/* Hover effect on table rows */
+.rankings-table tbody tr:hover {
+  background: rgba(134, 168, 231, 0.1);  /* Light blue highlight */
+  transition: background 0.2s ease;
+}
+
+/* Last row has no border */
+.rankings-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Rank column special styling */
+.rankings-table td:first-child {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--button-color);  /* Blue color */
+}
+
+
+/* Responsive design for smaller screens */
+@media (max-height: 700px) {  /* Short screens */
+  .page-header h1 {
+    font-size: 1.8rem;  /* Smaller title */
+  }
+  .game-controls {
+    gap: 1rem;  /* Less space */
+  }
+  #score-board, #lives-board {
+    font-size: 0.9rem;  /* Smaller text */
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {  /* Narrow screens like phones */
+  .nav {
+    padding: 0.5rem 1rem;  /* Less padding */
+    flex-wrap: wrap;  /* Allow wrapping */
+  }
+  .nav-right {
+    gap: 0.75rem;  /* Less space */
+    font-size: 0.9rem;  /* Smaller text */
+  }
+  .rules {
+    width: 90vw;  /* Wider sidebar */
+    transform: translateX(-100vw);  /* Hide further left */
+  }
+  .rules-btn {
+    top: 4.5rem;
+    right: 1rem;
+  }
+  canvas {
+    max-width: 95vw;  /* Almost full width */
+  }
+}
